@@ -1,0 +1,145 @@
+$main-color: #172b4d;
+
+body {
+  background: url(./img/bg.jpg) center center / cover no-repeat fixed;
+}
+
+button {
+  border: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 150px auto 100px;
+
+  h1 {
+    width: 15%;
+    background-color: #ffffff3d;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 20px 40px;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  .add {
+    padding: 20px;
+    margin-top: 50px;
+    background: #ebecf0;
+    color: $main-color;
+
+    input {
+      background: #fff;
+      width: 30%;
+      border-radius: 3px;
+      padding: 5px;
+      border: none;
+    }
+
+    button {
+      margin-left: 30px;
+      background:$main-color;
+      color: #fff;
+      padding: 5px 10px;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+  }
+
+  .flexBox {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+
+    .todo {
+      width: calc((100% - 20px) / 2);
+      background: #ebecf0;
+      border-radius: 3px;
+      box-sizing: border-box;
+      padding: 20px;
+      color: $main-color;
+
+      h2 {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      &__list {
+        margin-top: 30px;
+
+        &__item {
+          background: #fff;
+          border-radius: 3px;
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+
+          &:nth-child(n+2) {
+            margin-top: 20px;
+          }
+
+          &--title {}
+
+          &__btn {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+
+            .move {
+              display: block;
+              position: relative;
+              width: 20px;
+              height: 20px;
+              border-radius: 3px;
+              background: $main-color;
+              position: relative;
+              margin-right: 5px;
+
+              &::before{
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 7px;
+                height: 7px;
+                border-top: 2px solid #fff;
+                border-right: 2px solid #fff;
+                transform: translate(-50%, -50%) rotate(45deg);
+              }
+            }
+
+            .delete {
+              display: block;
+              position: relative;
+              width: 20px;
+              height: 20px;
+              border: 2px solid $main-color;
+              border-radius: 3px;
+              background: $main-color;
+
+              &::before, &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 3px;
+                height: 12px;
+                background: #fff;
+              }
+
+              &::before {
+                transform: translate(-50%,-50%) rotate(45deg);
+              }
+
+              &::after {
+                transform: translate(-50%,-50%) rotate(-45deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
