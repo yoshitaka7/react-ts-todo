@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.scss';
+import { Task } from './components/task';
 
 function App() {
   const [word, setWord] = useState('');
@@ -15,14 +16,14 @@ function App() {
     setWord("")
   }
 
-  const addArchive = (i : number):void => {
-    setArchives([...archives, tasks[i]])
+  const deleteTask = (i : number):void => {
     const newTasks = [...tasks];
     newTasks.splice(i, 1);
     setTasks(newTasks)
   }
 
-  const deleteTask = (i : number):void => {
+  const addArchive = (i : number):void => {
+    setArchives([...archives, tasks[i]])
     const newTasks = [...tasks];
     newTasks.splice(i, 1);
     setTasks(newTasks)
@@ -52,13 +53,14 @@ function App() {
             <ul className="todo__list">
               {tasks.map((task, i) => {
                 return (
-                  <li className="todo__list__item" key={i}>
-                    <p className="todo__list__item--title">{task}</p>
-                    <div className="todo__list__item__btn">
-                      <button className="move" onClick={() => addArchive(i)}></button>
-                      <button className="delete" onClick={() => deleteTask(i)}></button>
-                    </div>
-                  </li>
+                  <Task
+                    key={i}
+                    task= {task}
+                    i={i}
+                    onClick={()=> deleteTask(i)}
+                    archiveBtn
+                    onClickMove={() => addArchive(i)}
+                  />
                 )
               })}
             </ul>
@@ -69,17 +71,18 @@ function App() {
             <ul className="todo__list">
               {archives.map((archive, i) => {
                 return (
-                  <li className="todo__list__item" key={i}>
-                    <p className="todo__list__item--title">{archive}</p>
-                    <div className="todo__list__item__btn">
-                      <button className="delete" onClick={() => deleteArchive(i)}></button>
-                    </div>
-                  </li>
+                  <Task
+                    key={i}
+                    task= {archive}
+                    i={i}
+                    onClick={()=> deleteArchive(i)}
+                  />
                 )
               })}
             </ul>
           </div>
         </div>
+
       </main>
     </div>
   );
